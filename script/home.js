@@ -43,7 +43,7 @@ function displayCards(cards){
     const borderClass = isOpen ? "border-t-green-500" : "border-t-purple-500";
     card.className = `card bg-white border border-base-200 rounded-xl overflow-hidden shadow-sm transition-all hover:shadow-md  w-[257px] border-t-4 ${borderClass}`;
     card.innerHTML = `
-    <div class="p-5">
+    <div onclick="loadIssueDetail(${cards.id})" class="p-5">
         <div class="flex justify-between items-center mb-4">
             <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
                 <i class="fa-solid fa-circle-check text-green-500 text-[10px]"></i>
@@ -130,5 +130,72 @@ closedButton.addEventListener("click", () => {
     displayCards(closedIssues);
     hideLoading();
 });
-  
+
+
+const loadIssueDetail = async(id) =>{
+   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+   //console.log(url);
+   const res = await fetch(url);
+   const data = await res.json();
+   displayIssueDetails(data.data);
+};
+
+
+const displayIssueDetails= (issue) =>{
+ console.log(issue);
+ const detailsBox = document.getElementById("details-container");
+ const isOpen = issue.status === "open";
+    const borderClass = isOpen ? "bg-emerald-500" : "bg-purple-500";
+ detailsBox.innerHTML = `
+ <h2 class="text-2xl font-bold text-slate-800 mb-3">${issue.title}</h2>
+      
+      <div class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+        <span class="px-3 py-1 ${borderClass} text-white rounded-full text-xs font-semibold">${issue.status}</span>
+        <span>• Opened by <span class="font-medium text-slate-700">${issue.author}</span></span>
+        <span>•${issue.createdAt}</span>
+      </div>
+      
+      <div class="flex flex-wrap gap-2 mb-8">
+      ${issue.labels.map(label => {
+    
+        let colorClass = "bg-slate-100 text-slate-600 border-slate-200";
+        let iconClass = "fa-tag";
+
+        if (label.toLowerCase() === 'bug') {
+            colorClass = "bg-red-50 text-red-500 border-red-100";
+            iconClass = "fa-bug";
+        } else if (label.toLowerCase() === 'help wanted') {
+            colorClass = "bg-amber-50 text-amber-600 border-amber-100";
+            iconClass = "fa-life-ring";
+        } else if (label.toLowerCase() === 'enhancement') {
+            colorClass = "bg-emerald-50 text-emerald-600 border-emerald-100";
+            iconClass = "fa-star";
+        }
+
+        return `
+            <div class="flex items-center gap-1 px-2 py-1 ${colorClass} rounded-full text-[10px] font-medium border uppercase">
+                <i class="fa-solid ${iconClass} text-[8px]"></i> ${label}
+            </div>
+        `;
+    }).join("")}
+      </div>
+      <p class="text-slate-500 text-sm leading-relaxed mb-10">
+        ${issue.description}
+      </p>
+
+      <div class="bg-slate-50 rounded-2xl p-6 flex justify-between items-center mb-6 border border-slate-100">
+        <div>
+          <p class="text-slate-400 text-xs font-medium uppercase mb-2">Assignee:</p>
+          <p class="font-bold text-slate-800">${issue.author}</p>
+        </div>
+        <div class="text-right">
+          <p class="text-slate-400 text-xs font-medium uppercase mb-2">Priority:</p>
+          <span class="px-4 py-1.5 bg-red-500 text-white text-[10px] font-black rounded-full uppercase italic">${issue.priority}</span>
+        </div>
+      </div>`;
+
+document.getElementById("my_modal_5").showModal();
+
+} 
+ 
 loadCard();
