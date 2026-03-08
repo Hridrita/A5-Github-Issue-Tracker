@@ -196,6 +196,33 @@ const displayIssueDetails= (issue) =>{
 
 document.getElementById("my_modal_5").showModal();
 
-} 
+}
+
+document.getElementById("search-btn").addEventListener("click", () => {
+    const input = document.getElementById("search-box");
+    const searchValue = input.value.trim().toLowerCase();
+    
+    if (searchValue === "") {
+        displayCards(allIssues); 
+        return;
+    }
+
+    showLoading(); 
+
+    
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
+    .then((res) => res.json())
+    .then((data) => {
+        hideLoading();
+        
+        if (data.data && data.data.length > 0) {
+            displayCards(data.data);
+        } else {
+            cardContainer.innerHTML = "<p class='text-center w-full mt-10'>No issues found!</p>";
+            document.getElementById("total-issue").innerText = "0 Issues";
+        }
+    })
+
+});
  
 loadCard();
