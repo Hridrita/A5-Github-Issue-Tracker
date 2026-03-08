@@ -1,0 +1,68 @@
+const cardContainer = document.getElementById("card-container");
+
+async function loadCard(){
+    const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+    const data = await res.json();
+    displayCards(data.data);
+}
+
+function displayCards(cards){
+   console.log(cards);
+
+   cards.forEach((cards) => {
+    console.log(cards);
+
+    const card = document.createElement("div");
+    card.className = "card bg-white border border-base-200 rounded-xl overflow-hidden shadow-sm transition-all hover:shadow-md  w-[257px]";
+    card.innerHTML = `
+    <div class="p-5">
+        <div class="flex justify-between items-center mb-4">
+            <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
+                <i class="fa-solid fa-circle-check text-green-500 text-[10px]"></i>
+            </div>
+            <span class="px-3 py-1 bg-red-50 text-red-500 text-[10px] font-bold rounded-full uppercase">${cards.priority}</span>
+        </div>
+
+        <h3 class="font-bold text-slate-800 leading-tight mb-2 h-[40px] line-clamp-2">
+            ${cards.title}
+        </h3>
+        <p class="text-xs text-slate-500 line-clamp-2 mb-4">
+            ${cards.description}
+        </p>
+
+        <div class="flex flex-wrap gap-2 mb-6">
+    ${cards.labels.map(label => {
+    
+        let colorClass = "bg-slate-100 text-slate-600 border-slate-200";
+        let iconClass = "fa-tag";
+
+        if (label.toLowerCase() === 'bug') {
+            colorClass = "bg-red-50 text-red-500 border-red-100";
+            iconClass = "fa-bug";
+        } else if (label.toLowerCase() === 'help wanted') {
+            colorClass = "bg-amber-50 text-amber-600 border-amber-100";
+            iconClass = "fa-life-ring";
+        } else if (label.toLowerCase() === 'enhancement') {
+            colorClass = "bg-emerald-50 text-emerald-600 border-emerald-100";
+            iconClass = "fa-star";
+        }
+
+        return `
+            <div class="flex items-center gap-1 px-2 py-1 ${colorClass} rounded-full text-[10px] font-medium border uppercase">
+                <i class="fa-solid ${iconClass} text-[8px]"></i> ${label}
+            </div>
+        `;
+    }).join("")}
+</div>
+
+        <div class="pt-4 border-t border-slate-100">
+            <p class="text-[11px] text-slate-400">#${cards.id} by <span class="text-slate-600 font-medium">${cards.author}</span></p>
+            <p class="text-[11px] text-slate-400">${cards.createdAt}</p>
+        </div>
+    </div>
+    `;
+    cardContainer.appendChild(card);
+   });
+}
+  
+loadCard();
