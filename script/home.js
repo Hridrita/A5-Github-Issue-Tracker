@@ -1,19 +1,46 @@
 const cardContainer = document.getElementById("card-container");
+const loadingSpinner = document.getElementById("loading-spinner");
+const allButton = document.getElementById("all-btn");
+const openButton = document.getElementById("open-btn");
+const closedButton = document.getElementById("closed-btn");
 
-async function loadCard(){
-    const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
-    const data = await res.json();
-    displayCards(data.data);
+let allIssues = [];
+
+function showLoading (){
+    loadingSpinner.classList.remove("hidden");
+    loadingSpinner.classList.add("flex");
+    cardContainer.innerHTML = "";
 }
 
+
+function hideLoading(){
+    loadingSpinner.classList.add("hidden");
+    loadingSpinner.classList.remove("flex");
+}
+
+
+async function loadCard(){
+    showLoading();
+    const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+    const data = await res.json();
+    allIssues = data.data;
+    hideLoading();
+    displayCards(allIssues);
+}
+
+
 function displayCards(cards){
-   console.log(cards);
+    cardContainer.innerHTML = "";
+   //console.log(cards);
+   document.getElementById("total-issue").innerText = `${cards.length} Issues`;
 
    cards.forEach((cards) => {
     console.log(cards);
 
     const card = document.createElement("div");
-    card.className = "card bg-white border border-base-200 rounded-xl overflow-hidden shadow-sm transition-all hover:shadow-md  w-[257px]";
+    const isOpen = cards.status === "open";
+    const borderClass = isOpen ? "border-t-green-500" : "border-t-purple-500";
+    card.className = `card bg-white border border-base-200 rounded-xl overflow-hidden shadow-sm transition-all hover:shadow-md  w-[257px] border-t-4 ${borderClass}`;
     card.innerHTML = `
     <div class="p-5">
         <div class="flex justify-between items-center mb-4">
@@ -64,5 +91,19 @@ function displayCards(cards){
     cardContainer.appendChild(card);
    });
 }
+
+allButton.addEventListener("click", () => {
+    displayCards(allIssues);
+});
+
+openButton.addEventListener("click", () => {
+    const openIssues = allIssues.filter(issue => issue.status === "open");
+    displayCards(openIssues);
+});
+
+closedButton.addEventListener("click", () => {
+    const closedIssues = allIssues.filter(issue => issue.status === "closed");
+    displayCards(closedIssues);
+});
   
 loadCard();
