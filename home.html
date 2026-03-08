@@ -27,13 +27,13 @@
 <body>
     <!--nav bar-->
     <section>
-        <nav class="flex justify-between">
-             <div class="flex pl-[80px] pt-[20.5px] gap-2">
-                <img class="w-[36px]" src="assets/github-logo.png">
+        <nav class="flex flex-col md:flex-row justify-between items-center px-4 md:px-[80px] py-4 gap-4">
+             <div class="flex items-center gap-2">
+                <img class="w-[30px] md:w-[36px]" src="assets/github-logo.png">
                 <h1 class="font-semibold pt-2">GitHub Issues Tracker</h1>
              </div>
 
-             <div class="pr-[80px] pt-[20.5px] flex gap-3 ">
+             <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
     <label class="input bg-base-200 flex items-center gap-2">
         <i class="fa-brands fa-sistrix opacity-70"></i>
         <input id="search-box" type="text" class="grow" placeholder="Search Issues" />
@@ -55,9 +55,9 @@
 
 <!--issues no-->
 
-    <section class="flex justify-between gap-2 border-[#ffffffFF] shadow-sm mx-auto w-[1110px] p-4 mt-[16px] ">
+    <section class="flex flex-col md:flex-row justify-between items-center gap-4 border-white shadow-sm mx-auto w-full max-w-[1110px] p-4 mt-[16px] bg-white rounded-lg">
 
-    <div class="flex">
+    <div class="flex items-center gap-3">
         <img src="assets/Aperture.png" class="w-[50px]">
         <div>
             <h2 id="total-issue" class="font-semibold text-xl ">50 Issues</h2>
@@ -86,7 +86,7 @@
 
 <!--all cards-->
 
-<section id="card-container" class="grid grid-cols-4 border-white shadow-sm mx-auto w-[1110px] p-4 mt-[16px] space-y-3 min-h-[400px]">
+<section id="card-container" class="grid grid-cols-1 md:grid-cols-4 border-white shadow-sm mx-auto w-[1110px] p-4 mt-[16px] space-y-3 min-h-[400px]">
     
     
 </section>
