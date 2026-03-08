@@ -26,6 +26,7 @@ async function loadCard(){
     allIssues = data.data;
     hideLoading();
     displayCards(allIssues);
+    setActiveButton(allButton);
 }
 
 
@@ -92,18 +93,42 @@ function displayCards(cards){
    });
 }
 
+
+
+function setActiveButton(activeBtn) {
+    const buttons = [allButton, openButton, closedButton];
+    
+    buttons.forEach(btn => {
+        btn.classList.remove("btn-primary");
+        btn.classList.add("btn-outline");
+        btn.classList.add("focus:outline-none", "focus:ring-0", "active:outline-none");
+    });
+
+    activeBtn.classList.remove("btn-outline");
+    activeBtn.classList.add("btn-primary");
+}
+
 allButton.addEventListener("click", () => {
+    setActiveButton(allButton); 
+    showLoading();
     displayCards(allIssues);
+    hideLoading();
 });
 
 openButton.addEventListener("click", () => {
+    setActiveButton(openButton); 
+    showLoading();
     const openIssues = allIssues.filter(issue => issue.status === "open");
     displayCards(openIssues);
+    hideLoading();
 });
 
 closedButton.addEventListener("click", () => {
+    setActiveButton(closedButton); 
+    showLoading();
     const closedIssues = allIssues.filter(issue => issue.status === "closed");
     displayCards(closedIssues);
+    hideLoading();
 });
   
 loadCard();
