@@ -36,7 +36,7 @@ function displayCards(cards){
    document.getElementById("total-issue").innerText = `${cards.length} Issues`;
 
    cards.forEach((cards) => {
-    console.log(cards);
+   // console.log(cards);
 
     const card = document.createElement("div");
     const isOpen = cards.status === "open";
