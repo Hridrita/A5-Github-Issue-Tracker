@@ -20,4 +20,75 @@
           const name = "Arif";
           `Hello ${name}`
 
+
+
+
+
+
+
+
+
+
+
+
+   API Endpoints:
+All Issues:
+https://phi-lab-server.vercel.app/api/v1/lab/issues
+Single Issue:
+https://phi-lab-server.vercel.app/api/v1/lab/issue/{id}
+
+Example: https://phi-lab-server.vercel.app/api/v1/lab/issue/33
+
+Search Issue: https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q={searchText}
+Example: https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=notifications
+📝 Main Requirements
+🎨 Design Part
+Login Page
+Created a login page containing a logo, title, and sub-title
+Below that, there has 2 inputs, a sign-in button, and a demo credential to sign in. Followed the Figma for this page
+Styled as per Figma
+Main Page:
+Navbar:
+Navbar with website logo/name on the left
+Search input and button on the right
+Tab Section like Figma:
+3 tab ( All, Open, Closed) at the top of this section.(All, Open, Closed)
+
+Below the tab, there has an icon, the issue count, some text on the left, and an open and closed marker on the right
+
+Responsiveness: The website is responsive for mobile devices. 
+
+⚙️ Functionalities
+In login page, there has default admin credentials (username, password). You need to sign in using these credentials.
+
+Loaded all issues and display as per Figma
+
+On clicking on an open or closed tab, it will load the issues data of the related tab and show it in a display-like card in a 4-column layout like Figma. By default, it will show all data
+
+Each card shows:
+
+Title
+Description
+Status
+Author
+Priority
+Label
+CreatedAt
+Clicking on an issue card will open a modal and show all the information about that Issue.
+
+
+Showed the card Top border based on their category(open, closed), open card will have Green Boder, closed card will have a purple border on top.
+
+Loading spinner on data load
+
+Showed active button on changing category names
+
+Implemented Search Functionality and 8 meaningful github commit.
+
+
+🛠️ Technology Stack
+HTML
+CSS (Vanilla/Tailwind/DaisyUI)
+JavaScript (Vanilla)
+
    
