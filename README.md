@@ -1,94 +1,78 @@
-1. Var is the old way to declare variables. It is function-scoped and can be redeclared and updated. Because of this, it can sometimes create problems in larger programs.
-   let is block-scoped, which means it only works inside the block where it is declared.
-   const is also block-scoped like let, but its value cannot be reassigned after it is created. It is usually used for values that should not change.
+#  Dynamic Issue Tracking System
 
-2. The spread operator (...) is used to expand elements of an array or properties of an object.
-   For example, 
-         const nums = [1,2,3] ;
-         const newNums = [...nums,4,5] ;
+A high-performance, dynamic Issue Tracking System engineered to streamline real-time data management. This project serves as a sophisticated bridge between high-fidelity UI design and functional backend services, focusing on efficient data handling and user-centric navigation.
 
-3. map() creates a new array by applying a function to each element of the original array.
-   filter() also creates a new array, but it only includes the elements that meet a specific condition.
-   forEach() runs a function for every element in the array, but it does not return a new array. It is mainly used when i want to perform an action, such as printing values from an array.
+---
 
-4. An arrow function is a shorter way to write a function in JavaScript using the => symbol.
-   It makes the code cleaner and easier to read, especially for small functions.
-   Example: const sum = (a, b) => a + b;
+##  Project Overview
+I engineered this system to ensure a seamless user experience while managing the complex lifecycle of project issues. By integrating multiple REST API endpoints, the application provides a real-time dashboard where data is not just displayed but intelligently managed through advanced filtering and search capabilities.
 
-5. Template literals are a way to create strings in JavaScript using backticks instead of quotation.They allow to insert variables or expressions inside a string using ${ }.
-   Example:
-          const name = "Arif";
-          `Hello ${name}`
+##  Technical Stack & Tools
+The project leverages a modern, utility-first stack to achieve high-speed performance and responsiveness:
+* **Core Technologies:** HTML5, CSS3, and JavaScript (ES6+).
+* **UI Frameworks:** Tailwind CSS and DaisyUI for a modern, utility-first design approach.
+* **Backend Integration:** Vanilla JavaScript for complex DOM manipulation and asynchronous API fetching.
+* **Workflow & Hosting:** Git/GitHub for version control and Vercel for reliable API hosting and deployment.
 
+##  Key Technical Implementations
+* **Dynamic Data Lifecycle:** Real-time data fetching from a Vercel-hosted server with integrated sorting and high-speed search functionality.
+* **State-Driven UI Components:** An advanced tab-based navigation architecture that categorizes issues into **All**, **Open**, or **Closed** states.
+* **Context-Aware Design Logic:** Responsive UI where card border colors are dynamically rendered based on status—**Green for 'Open'** and **Purple for 'Closed'**.
+* **Interactive Metadata Modals:** A deep-dive modal system allowing users to view full metadata and history for specific issues without leaving the dashboard.
 
-
-
-
-
-
+##  Key Dependencies
+* `Tailwind CSS`: For rapid, utility-first UI development.
+* `DaisyUI`: For accessible and customizable UI components.
+* `Lucide Icons / FontAwesome`: For intuitive visual cues (if applicable).
 
 
+---
 
+##  Local Installation Guide
 
+Follow these steps to set up the project on your local machine:
 
-   API Endpoints:
-All Issues:
-https://phi-lab-server.vercel.app/api/v1/lab/issues
-Single Issue:
-https://phi-lab-server.vercel.app/api/v1/lab/issue/{id}
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Hridrita/A5-Github-Issue-Tracker.git
 
-Example: https://phi-lab-server.vercel.app/api/v1/lab/issue/33
+2. **Navigate to the Project Directory:**
+   cd A5-Github-Issue-Tracker
 
-Search Issue: https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q={searchText}
-Example: https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=notifications
-📝 Main Requirements
-🎨 Design Part
-Login Page
-Created a login page containing a logo, title, and sub-title
-Below that, there has 2 inputs, a sign-in button, and a demo credential to sign in. Followed the Figma for this page
-Styled as per Figma
-Main Page:
-Navbar:
-Navbar with website logo/name on the left
-Search input and button on the right
-Tab Section like Figma:
-3 tab ( All, Open, Closed) at the top of this section.(All, Open, Closed)
+3. **Open with Live Server:**
+   Since this project uses Vanilla JS and standard HTML/CSS, you can simply open index.html using a "Live Server" extension in VS Code.
 
-Below the tab, there has an icon, the issue count, some text on the left, and an open and closed marker on the right
+4. **Relevant Links**
+   Live Demo: https://a5-github-issue-tracker.vercel.app/
+   GitHub Repository: https://github.com/Hridrita/A5-Github-Issue-Tracker.git
 
-Responsiveness: The website is responsive for mobile devices. 
+5. ---
 
-⚙️ Functionalities
-In login page, there has default admin credentials (username, password). You need to sign in using these credentials.
+## 📸 Screen Previews
 
-Loaded all issues and display as per Figma
+<p align="center">
+  <b> Admin Login Interface</b><br>
+  <img src="https://i.ibb.co.com/sJPQ9DC6/image.png" width="400" alt="Login Page" style="border-radius: 10px;"/>
+</p>
 
-On clicking on an open or closed tab, it will load the issues data of the related tab and show it in a display-like card in a 4-column layout like Figma. By default, it will show all data
+<p align="center">
+  <b> Main Dashboard & All Issues View</b><br>
+  <img src="https://i.ibb.co.com/d0ySkhJL/image.png" width="850" alt="Main Dashboard" style="border-radius: 10px;"/>
+</p>
 
-Each card shows:
+<table style="width:100%">
+  <tr>
+    <td align="center" width="50%">
+      <b>🟢 Open Issues Filter</b><br>
+      <img src="https://i.ibb.co.com/PZ51vzV3/image.png" width="100%" alt="Open Issues"/>
+    </td>
+    <td align="center" width="50%">
+      <b>🟣 Closed Issues Filter</b><br>
+      <img src="https://i.ibb.co.com/7McVwH0/image.png" width="100%" alt="Closed Issues"/>
+    </td>
+  </tr>
+</table>
 
-Title
-Description
-Status
-Author
-Priority
-Label
-CreatedAt
-Clicking on an issue card will open a modal and show all the information about that Issue.
-
-
-Showed the card Top border based on their category(open, closed), open card will have Green Boder, closed card will have a purple border on top.
-
-Loading spinner on data load
-
-Showed active button on changing category names
-
-Implemented Search Functionality and 8 meaningful github commit.
-
-
-🛠️ Technology Stack
-HTML
-CSS (Vanilla/Tailwind/DaisyUI)
-JavaScript (Vanilla)
+---
 
    
